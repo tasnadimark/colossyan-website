@@ -223,6 +223,13 @@
         <span class="toggle-thumb"></span>
       </span>
     </label>
+    <label class="toggle-label">
+      <span>Animated gradient</span>
+      <input type="checkbox" id="gradient-anim-toggle" checked>
+      <span class="toggle-track">
+        <span class="toggle-thumb"></span>
+      </span>
+    </label>
   </div>
 
   <script>
@@ -232,6 +239,10 @@
 
     document.getElementById('hero-width-toggle').addEventListener('change', function () {
       document.querySelector('.hero').classList.toggle('hero--contained', !this.checked);
+    });
+
+    document.getElementById('gradient-anim-toggle').addEventListener('change', function () {
+      document.querySelector('.hero').classList.toggle('hero--static-gradient', !this.checked);
     });
   </script>
 </body>

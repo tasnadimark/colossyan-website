@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Action Buttons – Turn Videos Into Interactive Experiences | Colossyan</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="action-buttons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+
+    <!-- Top Utility Bar -->
+    <div class="top-bar">
+      <div class="top-bar-inner">
+        <a href="#" class="top-bar-link">Support</a>
+        <a href="#" class="top-bar-link">Login</a>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="navbar">
+      <nav class="navbar-container">
+        <a href="index.html" class="logo">
+          <img src="assets/logo.svg" alt="Colossyan" width="150" height="31">
+        </a>
+        <div class="nav-links">
+          <div class="nav-item nav-dropdown">
+            <span>Features</span>
+            <img src="assets/icon-chevron-down.svg" alt="" class="dropdown-icon">
+          </div>
+          <div class="nav-item nav-dropdown">
+            <span>Solutions</span>
+            <img src="assets/icon-chevron-down.svg" alt="" class="dropdown-icon">
+          </div>
+          <div class="nav-item nav-dropdown">
+            <span>Resources</span>
+            <img src="assets/icon-chevron-down.svg" alt="" class="dropdown-icon">
+          </div>
+          <a href="#" class="nav-item">Pricing</a>
+          <a href="#" class="nav-item">Enterprise</a>
+        </div>
+        <div class="nav-buttons">
+          <a href="#" class="btn btn-dark">Book a demo</a>
+          <a href="#" class="btn btn-light">Sign up for free</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="ab-hero">
+      <div class="ab-hero-inner">
+        <div class="ab-hero-text">
+          <span class="ab-label">ENGAGEMENT</span>
+          <h1 class="ab-hero-title">Turn your videos<br>into interactive<br>experiences</h1>
+          <p class="ab-hero-desc">Add interactive elements that guide viewers, check understanding, and turn content into action, all inside Colossyan.</p>
+          <div class="ab-hero-buttons">
+            <a href="#" class="ab-btn ab-btn-primary">Try out action buttons</a>
+            <a href="#" class="ab-btn ab-btn-secondary">Book a demo</a>
+          </div>
+        </div>
+        <div class="ab-hero-media">
+          <div class="ab-video-wrapper">
+            <video id="ab-hero-video" autoplay loop muted playsinline>
+              <source src="https://d3cq1xcrede9cy.cloudfront.net/website/Colossyan%20-%20Action%20Buttons%20-how-it-works'.mp4" type="video/mp4">
+            </video>
+            <button class="ab-mute-btn" id="ab-mute-btn" aria-label="Toggle mute">
+              <img src="assets/action-buttons/icon-muted.svg" alt="" class="ab-mute-icon" id="ab-mute-icon">
+              <img src="assets/action-buttons/icon-unmuted.svg" alt="" class="ab-unmute-icon" id="ab-unmute-icon" style="display:none;">
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TRUSTED BY SECTION ===== -->
+    <section class="ab-logos">
+      <h2 class="ab-logos-title">Trusted by industry leaders</h2>
+      <div class="ab-logos-strip">
+        <img src="assets/action-buttons/logo-novartis.svg" alt="Novartis" class="ab-logo-img" style="height:22px;">
+        <img src="assets/action-buttons/logo-continental.svg" alt="Continental" class="ab-logo-img" style="height:24px;">
+        <img src="assets/action-buttons/logo-continental-2.png" alt="Continental" class="ab-logo-img" style="height:22px;">
+        <img src="assets/action-buttons/logo-paramount.svg" alt="Paramount" class="ab-logo-img" style="height:42px;">
+        <img src="assets/action-buttons/logo-wsp.svg" alt="WSP" class="ab-logo-img" style="height:28px;">
+        <img src="assets/action-buttons/logo-hp.svg" alt="HP" class="ab-logo-img" style="height:40px;">
+      </div>
+    </section>
+
+    <!-- ===== FEATURE: ACTION BUTTONS ===== -->
+    <section class="ab-feature">
+      <div class="ab-feature-inner">
+        <div class="ab-feature-image">
+          <img src="assets/action-buttons/action-buttons-feature.png" alt="Action Buttons feature preview">
+        </div>
+        <div class="ab-feature-text">
+          <span class="ab-label">ACTION BUTTONS</span>
+          <h2 class="ab-feature-heading">Turn passive viewers into active participants</h2>
+          <p class="ab-feature-desc">Stop losing viewers to static content. Add interactive buttons and clickable CTAs that guide users exactly where you want them to go – whether that's booking a demo, exploring your product, or navigating through your training content.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURE: QUIZZES ===== -->
+    <section class="ab-feature ab-feature--reversed">
+      <div class="ab-feature-inner">
+        <div class="ab-feature-text">
+          <span class="ab-label">QUIZZES</span>
+          <h2 class="ab-feature-heading">Measure understanding, not just views</h2>
+          <p class="ab-feature-desc">Add in-video quizzes to check understanding and use analytics to see how viewers engage, respond, and progress through your content.</p>
+        </div>
+        <div class="ab-feature-image">
+          <img src="assets/action-buttons/quizzes.jpg" alt="Quizzes feature preview">
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURE: VIDEO NAVIGATION ===== -->
+    <section class="ab-feature">
+      <div class="ab-feature-inner">
+        <div class="ab-feature-image">
+          <img src="assets/action-buttons/video-navigation.png" alt="Video Navigation feature preview">
+        </div>
+        <div class="ab-feature-text">
+          <span class="ab-label">VIDEO NAVIGATION</span>
+          <h2 class="ab-feature-heading">Let viewers control their experience</h2>
+          <p class="ab-feature-desc">Add jump-to-scene buttons that let viewers skip sections, revisit content, or choose their own learning path. Create non-linear experiences where users navigate based on their needs – not a rigid timeline.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURE: INTERACTIVE EXPERIENCES ===== -->
+    <section class="ab-feature ab-feature--reversed">
+      <div class="ab-feature-inner">
+        <div class="ab-feature-text">
+          <span class="ab-label">INTERACTIVE EXPERIENCES</span>
+          <h2 class="ab-feature-heading">Create fully interactive screen captures and simulations</h2>
+          <p class="ab-feature-desc">Place invisible buttons over screenshots or screen recordings to build click-through demos and interactive tutorials. Show users the information most important to them by letting them click through each step – no static screenshots required</p>
+        </div>
+        <div class="ab-feature-image">
+          <img src="assets/action-buttons/interactive-experiences.png" alt="Interactive Experiences feature preview">
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CAPABILITIES SECTION ===== -->
+    <section class="ab-capabilities">
+      <div class="ab-capabilities-inner">
+        <div class="ab-capabilities-header">
+          <span class="ab-label">CAPABILITIES</span>
+          <h2 class="ab-section-heading">Build engaging, interactive<br>videos in minutes</h2>
+        </div>
+        <div class="ab-capabilities-grid">
+          <div class="ab-capability">
+            <div class="ab-capability-icon">
+              <img src="assets/action-buttons/icon-add-buttons.svg" alt="">
+            </div>
+            <div class="ab-capability-content">
+              <h3 class="ab-capability-title">Add buttons anywhere</h3>
+              <p class="ab-capability-desc">Place clickable buttons across any scene to guide viewers and prompt timely action.</p>
+            </div>
+          </div>
+          <div class="ab-capability">
+            <div class="ab-capability-icon">
+              <img src="assets/action-buttons/icon-external-urls.svg" alt="">
+            </div>
+            <div class="ab-capability-content">
+              <h3 class="ab-capability-title">Open external URLs</h3>
+              <p class="ab-capability-desc">Direct viewers to pages, docs, booking links, or next steps outside the video experience.</p>
+            </div>
+          </div>
+          <div class="ab-capability">
+            <div class="ab-capability-icon">
+              <img src="assets/action-buttons/icon-navigate-scenes.svg" alt="">
+            </div>
+            <div class="ab-capability-content">
+              <h3 class="ab-capability-title">Navigate between scenes</h3>
+              <p class="ab-capability-desc">Let viewers jump between scenes, choose learning paths, and control their viewing flow.</p>
+            </div>
+          </div>
+          <div class="ab-capability">
+            <div class="ab-capability-icon">
+              <img src="assets/action-buttons/icon-quizzes.svg" alt="">
+            </div>
+            <div class="ab-capability-content">
+              <h3 class="ab-capability-title">Add quizzes</h3>
+              <p class="ab-capability-desc">Check understanding with in-video questions that reinforce learning and active participation.</p>
+            </div>
+          </div>
+          <div class="ab-capability">
+            <div class="ab-capability-icon">
+              <img src="assets/action-buttons/icon-analytics.svg" alt="">
+            </div>
+            <div class="ab-capability-content">
+              <h3 class="ab-capability-title">Video analytics</h3>
+              <p class="ab-capability-desc">Track clicks, completions, and quiz results to better understand viewer engagement patterns.</p>
+            </div>
+          </div>
+          <div class="ab-capability">
+            <div class="ab-capability-icon">
+              <img src="assets/action-buttons/icon-scorm.svg" alt="">
+            </div>
+            <div class="ab-capability-content">
+              <h3 class="ab-capability-title">SCORM export</h3>
+              <p class="ab-capability-desc">Export interactive videos to your LMS to track progress, completion, and learner outcomes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURE: SCORM / LMS ===== -->
+    <section class="ab-feature">
+      <div class="ab-feature-inner">
+        <div class="ab-feature-image">
+          <img src="assets/action-buttons/scorm.webp" alt="SCORM export feature preview">
+        </div>
+        <div class="ab-feature-text">
+          <span class="ab-label">VIDEO NAVIGATION</span>
+          <h2 class="ab-feature-heading">Easily add interactive videos to your LMS</h2>
+          <p class="ab-feature-desc">Use Colossyan with any SCORM-compliant learning platform. Export AI videos as SCORM 1.2 or SCORM 2004 (4th edition), and save learner progress with SCORM bookmarking so viewers can pick up where they left off.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== USE CASES SECTION ===== -->
+    <section class="ab-usecases">
+      <div class="ab-usecases-inner">
+        <div class="ab-usecases-header">
+          <div class="ab-usecases-header-text">
+            <span class="ab-label">USE CASES</span>
+            <h2 class="ab-section-heading">See what you can create<br>with action buttons</h2>
+          </div>
+          <a href="#" class="ab-btn ab-btn-primary">Try out action buttons</a>
+        </div>
+        <div class="ab-usecases-grid">
+          <div class="ab-usecase-card">
+            <h3 class="ab-usecase-title">Sales enablement</h3>
+            <p class="ab-usecase-desc">Turn product videos into conversion machines. Add "Request Demo," "Get Pricing," or "Contact Sales" buttons directly in your pitch videos – guide prospects from interest to action instantly.</p>
+            <div class="ab-usecase-image">
+              <img src="assets/action-buttons/sales-enablement.png" alt="Sales enablement use case">
+            </div>
+          </div>
+          <div class="ab-usecase-card">
+            <h3 class="ab-usecase-title">Interactive training</h3>
+            <p class="ab-usecase-desc">Create choose-your-own-path learning experiences. Let employees navigate the sections they need, skip content they've mastered, check understanding with quizzes, or revisit complex topics.</p>
+            <div class="ab-usecase-image">
+              <img src="assets/action-buttons/interactive-training.png" alt="Interactive training use case">
+            </div>
+          </div>
+          <div class="ab-usecase-card">
+            <h3 class="ab-usecase-title">Product demos</h3>
+            <p class="ab-usecase-desc">Build interactive product walkthroughs where viewers click through each feature step-by-step. Show exactly how your product works with click-through screen captures that feel like the real thing.</p>
+            <div class="ab-usecase-image">
+              <img src="assets/action-buttons/product-demos.png" alt="Product demos use case">
+            </div>
+          </div>
+          <div class="ab-usecase-card">
+            <h3 class="ab-usecase-title">Customer education</h3>
+            <p class="ab-usecase-desc">Guide customers to support resources, documentation, or next steps with strategically placed buttons. Turn every help video into a navigation hub for your knowledge base.</p>
+            <div class="ab-usecase-image">
+              <img src="assets/action-buttons/customer-education.png" alt="Customer education use case">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EXPLORE ARTICLES (BLOG CARDS) ===== -->
+    <section class="explore-section">
+      <div class="explore-header">
+        <h2 class="explore-title">Explore articles by<br>the Colossyan team</h2>
+        <a href="#" class="view-all-link">
+          <span>View all</span>
+          <img src="assets/icon-chevron-right.svg" alt="" width="24" height="24">
+        </a>
+      </div>
+      <div class="explore-cards">
+        <a href="#" class="card">
+          <div class="card-image">
+            <img src="assets/card-1.jpg" alt="Networking and Relationship Building">
+          </div>
+          <div class="card-text">
+            <h3 class="card-title">Networking and Relationship Building</h3>
+            <p class="card-desc">Use this template to produce videos on best practices for relationship building at work.</p>
+          </div>
+        </a>
+        <a href="#" class="card">
+          <div class="card-image">
+            <img src="assets/card-2.jpg" alt="Networking and Relationship Building">
+          </div>
+          <div class="card-text">
+            <h3 class="card-title">Networking and Relationship Building</h3>
+            <p class="card-desc">Use this template to produce videos on best practices for relationship building at work.</p>
+          </div>
+        </a>
+        <a href="#" class="card">
+          <div class="card-image">
+            <img src="assets/card-1.jpg" alt="Networking and Relationship Building">
+          </div>
+          <div class="card-text">
+            <h3 class="card-title">Networking and Relationship Building</h3>
+            <p class="card-desc">Use this template to produce videos on best practices for relationship building at work.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Mute/unmute toggle for hero video
+    const video = document.getElementById('ab-hero-video');
+    const muteBtn = document.getElementById('ab-mute-btn');
+    const muteIcon = document.getElementById('ab-mute-icon');
+    const unmuteIcon = document.getElementById('ab-unmute-icon');
+
+    muteBtn.addEventListener('click', function () {
+      video.muted = !video.muted;
+      if (video.muted) {
+        muteIcon.style.display = '';
+        unmuteIcon.style.display = 'none';
+      } else {
+        muteIcon.style.display = 'none';
+        unmuteIcon.style.display = '';
+      }
+    });
+  </script>
+</body>
+</html>

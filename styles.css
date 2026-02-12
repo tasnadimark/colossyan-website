@@ -170,12 +170,54 @@ img {
 
 /* ===== Hero Section ===== */
 .hero {
-  background: linear-gradient(190.37deg, #FDD7CF 25.92%, #CDE9F5 74.08%);
+  /* Base layer (static) + 3 floating radial blobs */
+  background:
+    radial-gradient(circle, rgba(253, 210, 200, 0.85) 0%, transparent 60%),
+    radial-gradient(circle, rgba(190, 228, 245, 0.85) 0%, transparent 60%),
+    radial-gradient(circle, rgba(245, 188, 175, 0.6) 0%, transparent 55%),
+    linear-gradient(190.37deg, #FDD7CF 25.92%, #CDE9F5 74.08%);
+  background-size:
+    60% 90%,
+    55% 85%,
+    45% 70%,
+    100% 100%;
+  animation: heroGradientShift 18s ease-in-out infinite;
   padding: 60px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
+}
+
+@keyframes heroGradientShift {
+  0%, 100% {
+    background-position:
+      10% 20%,
+      90% 80%,
+      50% 50%,
+      center;
+  }
+  25% {
+    background-position:
+      80% 30%,
+      15% 60%,
+      30% 80%,
+      center;
+  }
+  50% {
+    background-position:
+      90% 75%,
+      10% 25%,
+      70% 20%,
+      center;
+  }
+  75% {
+    background-position:
+      20% 65%,
+      85% 40%,
+      60% 85%,
+      center;
+  }
 }
 
 .hero-title {
@@ -819,6 +861,12 @@ img {
 
 .sidebar.sidebar--plain::before {
   display: none;
+}
+
+/* ===== Hero Static Gradient (animation off) ===== */
+.hero.hero--static-gradient {
+  background: linear-gradient(190.37deg, #FDD7CF 25.92%, #CDE9F5 74.08%);
+  animation: none;
 }
 
 /* ===== Hero Contained Variant ===== */
