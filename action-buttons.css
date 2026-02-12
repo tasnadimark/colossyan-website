@@ -175,9 +175,11 @@
 
 .ab-logo-img {
   display: block;
+  width: auto;
   object-fit: contain;
   opacity: 0.7;
   transition: opacity 0.15s ease;
+  flex-shrink: 0;
 }
 
 .ab-logo-img:hover {
@@ -232,14 +234,8 @@
   max-width: 565px;
 }
 
-/* Reversed feature (text left, image right) */
-.ab-feature--reversed .ab-feature-inner {
-  direction: rtl;
-}
-
-.ab-feature--reversed .ab-feature-inner > * {
-  direction: ltr;
-}
+/* Reversed feature (text left, image right) – 
+   HTML order is already [text, image], so no grid swap needed. */
 
 /* ===== CAPABILITIES SECTION ===== */
 .ab-capabilities {
@@ -455,18 +451,6 @@
   .ab-feature-inner {
     grid-template-columns: 1fr;
     gap: 32px;
-  }
-
-  .ab-feature--reversed .ab-feature-inner {
-    direction: ltr;
-  }
-
-  .ab-feature--reversed .ab-feature-image {
-    order: 2;
-  }
-
-  .ab-feature--reversed .ab-feature-text {
-    order: 1;
   }
 
   .ab-usecases-header {

@@ -282,7 +282,7 @@ img {
   box-shadow:
     -8px 0px 17px rgba(119, 196, 255, 0.6),
     0 4px 20px rgba(0, 0, 0, 0.06);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .sidebar::before {
@@ -293,6 +293,7 @@ img {
   bottom: 0;
   width: 11px;
   background: linear-gradient(to bottom, #e4f0ff, #b8daff, #77c4ff);
+  border-radius: 22px 0 0 22px;
 }
 
 .sidebar-title {
@@ -325,6 +326,15 @@ img {
 
 .sidebar-links li a:hover {
   color: #000;
+}
+
+.sidebar-cta {
+  display: flex;
+  font-size: 13px;
+  padding: 10px 8px;
+  text-align: center;
+  white-space: normal;
+  line-height: 1.3;
 }
 
 /* ===== Article Wrapper ===== */
@@ -691,6 +701,12 @@ img {
   .sidebar-links {
     flex-direction: row;
     gap: 16px;
+  }
+
+  .sidebar-cta {
+    width: auto;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .hero-title {
