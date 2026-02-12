@@ -76,7 +76,6 @@
           <li><a href="#about">About Colossyan</a></li>
           <li><a href="#media">Media contacts</a></li>
         </ul>
-        <a href="#" class="btn btn-dark sidebar-cta">Generate a video for free</a>
       </aside>
 
       <!-- Main Column -->
@@ -163,6 +162,35 @@
 
         </article>
       </div>
+
+      <!-- Right Info Sidebar -->
+      <aside class="info-sidebar">
+        <div class="info-card">
+          <p class="info-card-label">Colossyan</p>
+          <h3 class="info-card-title">Create AI videos in minutes</h3>
+          <p class="info-card-desc">Turn text into professional video with AI avatars. No cameras, no studios.</p>
+          <ul class="info-card-features">
+            <li>
+              <span class="info-card-icon">&#10003;</span>
+              <span>100+ realistic AI avatars</span>
+            </li>
+            <li>
+              <span class="info-card-icon">&#10003;</span>
+              <span>70+ languages supported</span>
+            </li>
+            <li>
+              <span class="info-card-icon">&#10003;</span>
+              <span>Script-to-video in minutes</span>
+            </li>
+            <li>
+              <span class="info-card-icon">&#10003;</span>
+              <span>Enterprise-grade security</span>
+            </li>
+          </ul>
+          <a href="#" class="btn btn-dark info-card-btn">Generate a video for free</a>
+          <p class="info-card-note">No credit card required</p>
+        </div>
+      </aside>
     </div>
 
     <!-- Explore Articles Section -->
@@ -231,6 +259,13 @@
         <span class="toggle-thumb"></span>
       </span>
     </label>
+    <label class="toggle-label">
+      <span>Button glow</span>
+      <input type="checkbox" id="btn-glow-toggle" checked>
+      <span class="toggle-track">
+        <span class="toggle-thumb"></span>
+      </span>
+    </label>
   </div>
 
   <script>
@@ -244,6 +279,10 @@
 
     document.getElementById('gradient-anim-toggle').addEventListener('change', function () {
       document.querySelector('.hero').classList.toggle('hero--static-gradient', !this.checked);
+    });
+
+    document.getElementById('btn-glow-toggle').addEventListener('change', function () {
+      document.body.classList.toggle('no-btn-glow', !this.checked);
     });
   </script>
 </body>
