@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk&display=swap" rel="stylesheet">
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
 </head>
 <body>
   <div class="page">
@@ -63,14 +64,8 @@
           </div>
         </div>
         <div class="ab-hero-media">
-          <div class="ab-video-wrapper">
-            <video id="ab-hero-video" autoplay loop muted playsinline>
-              <source src="https://d3cq1xcrede9cy.cloudfront.net/website/Colossyan%20-%20Action%20Buttons%20-how-it-works'.mp4" type="video/mp4">
-            </video>
-            <button class="ab-mute-btn" id="ab-mute-btn" aria-label="Toggle mute">
-              <img src="assets/action-buttons/icon-muted.svg" alt="" class="ab-mute-icon" id="ab-mute-icon">
-              <img src="assets/action-buttons/icon-unmuted.svg" alt="" class="ab-unmute-icon" id="ab-unmute-icon" style="display:none;">
-            </button>
+          <div class="ab-spline-wrapper" id="ab-spline-wrapper">
+            <spline-viewer url="./scene.splinecode" background="transparent"></spline-viewer>
           </div>
         </div>
       </div>
@@ -311,22 +306,35 @@
   </div>
 
   <script>
-    // Mute/unmute toggle for hero video
-    const video = document.getElementById('ab-hero-video');
-    const muteBtn = document.getElementById('ab-mute-btn');
-    const muteIcon = document.getElementById('ab-mute-icon');
-    const unmuteIcon = document.getElementById('ab-unmute-icon');
+    // Scroll-driven animation for the Spline hero scene
+    (function () {
+      const wrapper = document.getElementById('ab-spline-wrapper');
+      if (!wrapper) return;
 
-    muteBtn.addEventListener('click', function () {
-      video.muted = !video.muted;
-      if (video.muted) {
-        muteIcon.style.display = '';
-        unmuteIcon.style.display = 'none';
-      } else {
-        muteIcon.style.display = 'none';
-        unmuteIcon.style.display = '';
+      function onScroll() {
+        const rect = wrapper.getBoundingClientRect();
+        const viewH = window.innerHeight;
+
+        // progress: 0 when element is fully in view, 1 when scrolled well past
+        const progress = Math.min(Math.max(-rect.top / viewH, 0), 1);
+
+        // Rotate Y gently as user scrolls (0 → 25deg)
+        const rotateY = progress * 25;
+        // Slight upward float (-0 → -30px)
+        const translateY = progress * -30;
+        // Scale down slightly (1 → 0.92)
+        const scale = 1 - progress * 0.08;
+        // Fade out gently (1 → 0.6)
+        const opacity = 1 - progress * 0.4;
+
+        wrapper.style.transform =
+          `perspective(1200px) rotateY(${rotateY}deg) translateY(${translateY}px) scale(${scale})`;
+        wrapper.style.opacity = opacity;
       }
-    });
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); // set initial state
+    })();
   </script>
 </body>
 </html>
