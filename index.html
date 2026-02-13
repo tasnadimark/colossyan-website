@@ -76,7 +76,7 @@
     <div class="content-area">
 
       <!-- Sidebar -->
-      <aside class="sidebar">
+      <aside class="sidebar sidebar--plain">
         <p class="sidebar-title">On this page</p>
         <ul class="sidebar-links">
           <li><a href="#introduction" class="active">Introduction</a></li>
@@ -161,29 +161,30 @@
       <!-- Right Info Sidebar -->
       <aside class="info-sidebar">
         <div class="info-card">
-          <p class="info-card-label">Colossyan</p>
           <h3 class="info-card-title">Create AI videos in minutes</h3>
-          <p class="info-card-desc">Turn text into professional video with AI avatars. No cameras, no studios.</p>
-          <ul class="info-card-features">
-            <li>
-              <span class="info-card-icon">&#10003;</span>
-              <span>100+ realistic AI avatars</span>
-            </li>
-            <li>
-              <span class="info-card-icon">&#10003;</span>
-              <span>70+ languages supported</span>
-            </li>
-            <li>
-              <span class="info-card-icon">&#10003;</span>
-              <span>Script-to-video in minutes</span>
-            </li>
-            <li>
-              <span class="info-card-icon">&#10003;</span>
-              <span>Enterprise-grade security</span>
-            </li>
-          </ul>
-          <a href="#" class="btn btn-dark info-card-btn">Generate a video for free</a>
-          <p class="info-card-note">No credit card required</p>
+          <div class="info-card-expand">
+            <p class="info-card-desc">Turn text into professional video with AI avatars. No cameras, no studios.</p>
+            <ul class="info-card-features">
+              <li>
+                <span class="info-card-icon">&#10003;</span>
+                <span>100+ realistic AI avatars</span>
+              </li>
+              <li>
+                <span class="info-card-icon">&#10003;</span>
+                <span>70+ languages supported</span>
+              </li>
+              <li>
+                <span class="info-card-icon">&#10003;</span>
+                <span>Script-to-video in minutes</span>
+              </li>
+              <li>
+                <span class="info-card-icon">&#10003;</span>
+                <span>Enterprise-grade security</span>
+              </li>
+            </ul>
+            <p class="info-card-note">No credit card required</p>
+          </div>
+          <a href="#" class="btn info-card-btn">Generate a video for free</a>
         </div>
       </aside>
     </div>
@@ -231,58 +232,12 @@
 
   </div>
 
-  <!-- Toggles -->
-  <div class="toggles-panel">
-    <label class="toggle-label">
-      <span>TOC style</span>
-      <input type="checkbox" id="toc-style-toggle" checked>
-      <span class="toggle-track">
-        <span class="toggle-thumb"></span>
-      </span>
-    </label>
-    <label class="toggle-label">
-      <span>Full-width hero</span>
-      <input type="checkbox" id="hero-width-toggle" checked>
-      <span class="toggle-track">
-        <span class="toggle-thumb"></span>
-      </span>
-    </label>
-    <label class="toggle-label">
-      <span>Animated gradient</span>
-      <input type="checkbox" id="gradient-anim-toggle" checked>
-      <span class="toggle-track">
-        <span class="toggle-thumb"></span>
-      </span>
-    </label>
-    <label class="toggle-label">
-      <span>Button glow</span>
-      <input type="checkbox" id="btn-glow-toggle" checked>
-      <span class="toggle-track">
-        <span class="toggle-thumb"></span>
-      </span>
-    </label>
-  </div>
-
   <script>
-    document.getElementById('toc-style-toggle').addEventListener('change', function () {
-      document.querySelector('.sidebar').classList.toggle('sidebar--plain', !this.checked);
-    });
-
-    document.getElementById('hero-width-toggle').addEventListener('change', function () {
-      document.querySelector('.hero').classList.toggle('hero--contained', !this.checked);
-    });
-
-    document.getElementById('gradient-anim-toggle').addEventListener('change', function () {
-      document.querySelector('.hero').classList.toggle('hero--static-gradient', !this.checked);
-    });
-
-    document.getElementById('btn-glow-toggle').addEventListener('change', function () {
-      document.body.classList.toggle('no-btn-glow', !this.checked);
-    });
-
     // Hide navbar on scroll down, show on scroll up
+    // Expand info card after scrolling into the article
     (function () {
       var navbar = document.querySelector('.navbar');
+      var infoCard = document.querySelector('.info-card');
       var lastScrollY = window.scrollY;
       var ticking = false;
 
@@ -290,11 +245,23 @@
         if (!ticking) {
           requestAnimationFrame(function () {
             var currentScrollY = window.scrollY;
+
+            // Navbar hide/show
             if (currentScrollY > lastScrollY && currentScrollY > 100) {
               navbar.classList.add('navbar--hidden');
             } else {
               navbar.classList.remove('navbar--hidden');
             }
+
+            // Info card expand at 300px scroll
+            if (infoCard) {
+              if (currentScrollY > 1000) {
+                infoCard.classList.add('expanded');
+              } else {
+                infoCard.classList.remove('expanded');
+              }
+            }
+
             lastScrollY = currentScrollY;
             ticking = false;
           });

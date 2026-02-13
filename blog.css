@@ -92,13 +92,12 @@
   display: flex;
   flex-direction: column;
   border: 1px solid #e0e0e0;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .blog-card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border-color: #ccc;
 }
 
@@ -107,50 +106,137 @@
   position: relative;
   height: 160px;
   overflow: hidden;
+  background: var(--grad-bg);
 }
 
-.blog-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.blog-card-overlay {
+.blog-card-image::before,
+.blog-card-image::after {
+  content: '';
   position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  border-radius: 50%;
+  filter: blur(40px);
+  transition: transform 0.5s ease;
+}
+
+.blog-card-image::before {
+  width: 65%;
+  height: 160%;
+  background: var(--blob-1);
+  left: var(--b1-x);
+  top: var(--b1-y);
+}
+
+.blog-card-image::after {
+  width: 55%;
+  height: 140%;
+  background: var(--blob-2);
+  left: var(--b2-x);
+  top: var(--b2-y);
+}
+
+.blog-card:hover .blog-card-image::before {
+  transform: translateX(30px);
+}
+
+.blog-card:hover .blog-card-image::after {
+  transform: translateX(-30px);
 }
 
 .blog-card-title {
-  position: absolute;
-  top: 20px;
-  left: 24px;
-  right: 24px;
-  font-size: 18px;
-  font-weight: 400;
-  color: #fff;
-  line-height: 24px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+  line-height: 22px;
   letter-spacing: -0.2px;
+  padding: 12px 24px 20px;
+}
+
+/* ===== Blog Gradient Thumbnails ===== */
+/* Light Coral to Blue */
+.blog-grad-1 {
+  --grad-bg: #CDE9F5;
+  --blob-1: rgba(253, 215, 207, 0.9);
+  --b1-x: -10%;  --b1-y: -40%;
+  --blob-2: rgba(255, 124, 115, 0.45);
+  --b2-x: 30%;   --b2-y: -30%;
+}
+
+/* Coral to Blue */
+.blog-grad-2 {
+  --grad-bg: #70CCF4;
+  --blob-1: rgba(255, 124, 115, 0.8);
+  --b1-x: -5%;   --b1-y: -50%;
+  --blob-2: rgba(253, 215, 207, 0.6);
+  --b2-x: 50%;   --b2-y: -20%;
+}
+
+/* Dark Coral */
+.blog-grad-3 {
+  --grad-bg: #222222;
+  --blob-1: rgba(255, 124, 115, 0.7);
+  --b1-x: 30%;   --b1-y: -40%;
+  --blob-2: rgba(253, 215, 207, 0.35);
+  --b2-x: -10%;  --b2-y: -20%;
+}
+
+/* Light Blue to Yellow */
+.blog-grad-4 {
+  --grad-bg: #FFF1C1;
+  --blob-1: rgba(205, 233, 245, 0.9);
+  --b1-x: -10%;  --b1-y: -45%;
+  --blob-2: rgba(112, 204, 244, 0.4);
+  --b2-x: 35%;   --b2-y: -25%;
+}
+
+/* Blue to Yellow */
+.blog-grad-5 {
+  --grad-bg: #FADD76;
+  --blob-1: rgba(112, 204, 244, 0.8);
+  --b1-x: -5%;   --b1-y: -50%;
+  --blob-2: rgba(205, 233, 245, 0.5);
+  --b2-x: 45%;   --b2-y: -20%;
+}
+
+/* Dark Blue */
+.blog-grad-6 {
+  --grad-bg: #222222;
+  --blob-1: rgba(112, 204, 244, 0.7);
+  --b1-x: 30%;   --b1-y: -40%;
+  --blob-2: rgba(205, 233, 245, 0.3);
+  --b2-x: -10%;  --b2-y: -25%;
+}
+
+/* Light Yellow to Green */
+.blog-grad-7 {
+  --grad-bg: #D6F6DA;
+  --blob-1: rgba(255, 241, 193, 0.9);
+  --b1-x: -10%;  --b1-y: -40%;
+  --blob-2: rgba(250, 221, 118, 0.4);
+  --b2-x: 40%;   --b2-y: -30%;
+}
+
+/* Yellow to Green */
+.blog-grad-8 {
+  --grad-bg: #D6F6DA;
+  --blob-1: rgba(250, 221, 118, 0.8);
+  --b1-x: -5%;   --b1-y: -45%;
+  --blob-2: rgba(255, 241, 193, 0.5);
+  --b2-x: 45%;   --b2-y: -20%;
+}
+
+/* Green to Coral */
+.blog-grad-9 {
+  --grad-bg: #FDD7CF;
+  --blob-1: rgba(214, 246, 218, 0.9);
+  --b1-x: -10%;  --b1-y: -40%;
+  --blob-2: rgba(125, 233, 138, 0.4);
+  --b2-x: 35%;   --b2-y: -25%;
 }
 
 .blog-card-date {
-  position: absolute;
-  bottom: 12px;
-  left: 24px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 32px;
-  padding: 6px 14px 6px 10px;
   font-size: 12px;
   font-weight: 400;
-  color: #212121;
-  line-height: 1;
-}
-
-.blog-card-date svg {
+  color: #9e9e9e;
   flex-shrink: 0;
 }
 
@@ -186,28 +272,6 @@
   flex-shrink: 0;
 }
 
-/* Card Link */
-.blog-card-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin: 16px 24px 20px;
-  width: fit-content;
-  height: 40px;
-  padding: 0 24px;
-  border: 1px solid #e6e6e6;
-  border-radius: 40px;
-  font-size: 12px;
-  font-weight: 400;
-  color: #000;
-  background: #fff;
-  transition: background 0.15s ease, border-color 0.15s ease;
-}
-
-.blog-card:hover .blog-card-link {
-  background: #f5f5f5;
-  border-color: #ccc;
-}
 
 /* ===== Load More ===== */
 .blog-load-more {
