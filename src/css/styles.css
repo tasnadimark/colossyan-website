@@ -10,6 +10,7 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -426,6 +427,11 @@ img {
   text-align: justify;
 }
 
+.body-text h2[id],
+.body-text h3[id] {
+  scroll-margin-top: 100px;
+}
+
 .body-text p {
   margin-bottom: 32px;
 }
@@ -616,6 +622,15 @@ img {
   display: flex;
   align-items: stretch;
   overflow: hidden;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+  /* Offset to align with the article column (sidebar 220px + gap) */
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100% - 80px);
+  max-width: 760px;
 }
 
 .cta-content {
