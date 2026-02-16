@@ -335,7 +335,7 @@ img {
 .sidebar-links li a.active,
 .sidebar-links li a:hover {
   color: #000;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .sidebar-cta {

@@ -2,7 +2,7 @@
 title: "Mobile Content Is Where Video Actually Starts"
 author: "Nikitas Stamoulis"
 authorRole: "Growth"
-authorAvatar: "/assets/author.avif"
+authorAvatar: "/assets/placeholder-author.png"
 date: 2026-02-10
 description: "Mobile video is no longer a shortcut. It's the starting point."
 featuredImage: "/assets/article-hero.jpg"
@@ -44,6 +44,8 @@ Teams start to struggle when they need to:
 At this point, mobile video isn't the problem. The problem is everything that comes after capture.
 
 ## Elevating mobile content with platforms like Colossyan
+
+![Placeholder](/assets/placeholder-author.png)
 
 This is where platforms like Colossyan come into play.
 
