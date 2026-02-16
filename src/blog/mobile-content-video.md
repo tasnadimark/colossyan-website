@@ -6,6 +6,10 @@ authorAvatar: "/assets/placeholder-author.png"
 date: 2026-02-10
 description: "Mobile video is no longer a shortcut. It's the starting point."
 featuredImage: "/assets/article-hero.jpg"
+ctaHeading: "Turn mobile clips into polished video"
+ctaSubtitle: "Bring raw footage into Colossyan and add narration, branding, and translations in minutes."
+ctaButtonText: "Try it free"
+ctaButtonUrl: "#"
 ---
 
 Mobile video is no longer a shortcut. It's the starting point. Most business video today doesn't begin in a studio. It begins on a phone. A product update recorded between meetings. A process walkthrough filmed on site. A quick explanation captured while the context is still fresh.
@@ -42,6 +46,8 @@ Teams start to struggle when they need to:
 - Turn clips into structured training or onboarding
 
 At this point, mobile video isn't the problem. The problem is everything that comes after capture.
+
+{% cta %}
 
 ## Elevating mobile content with platforms like Colossyan
 

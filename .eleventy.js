@@ -46,11 +46,34 @@ module.exports = function (eleventyConfig) {
     return `${mins} min read`;
   });
 
+  // CTA banner shortcode: reads from post front matter with defaults
+  eleventyConfig.addShortcode("cta", function () {
+    const heading = this.ctx.ctaHeading || "Try out the best video generator";
+    const subtitle = this.ctx.ctaSubtitle || "Check out our AI video generator with 100+ realistic avatars";
+    const btnText = this.ctx.ctaButtonText || "Book a demo";
+    const btnUrl = this.ctx.ctaButtonUrl || "#";
+    const image = this.ctx.ctaImage || "/assets/cta-image.jpg";
+
+    return `<div class="cta-banner cta-banner--inline">
+  <div class="cta-content">
+    <div class="cta-text">
+      <h3 class="cta-heading">${heading}</h3>
+      <p class="cta-subtitle">${subtitle}</p>
+    </div>
+    <a href="${btnUrl}" class="btn btn-light">${btnText}</a>
+  </div>
+  <div class="cta-image-wrapper">
+    <img src="${image}" alt="${heading}" class="cta-image">
+  </div>
+</div>`;
+  });
+
   return {
     dir: {
       input: "src",
       output: "_site",
       includes: "_includes",
     },
+    markdownTemplateEngine: "njk",
   };
 };

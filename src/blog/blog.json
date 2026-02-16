@@ -1,5 +1,10 @@
 {
   "layout": "layouts/post.njk",
   "tags": "posts",
-  "permalink": "/blog/{{ page.fileSlug }}/"
+  "permalink": "/blog/{{ page.fileSlug }}/",
+  "ctaHeading": "Try out the best video generator",
+  "ctaSubtitle": "Check out our AI video generator with 100+ realistic avatars",
+  "ctaButtonText": "Book a demo",
+  "ctaButtonUrl": "#",
+  "ctaImage": "/assets/cta-image.jpg"
 }

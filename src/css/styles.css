@@ -629,15 +629,11 @@ img {
   display: flex;
   align-items: stretch;
   overflow: hidden;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding-left: 0;
-  padding-right: 0;
-  /* Offset to align with the article column (sidebar 220px + gap) */
-  margin-left: auto;
-  margin-right: auto;
-  width: calc(100% - 80px);
-  max-width: 760px;
+}
+
+.cta-banner--inline {
+  margin: 32px 0;
+  width: 100%;
 }
 
 .cta-content {
