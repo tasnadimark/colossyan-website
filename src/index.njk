@@ -1,0 +1,33 @@
+---
+layout: layouts/base.njk
+title: Blog
+---
+
+{% block content %}
+<section class="blog-listing">
+  <div class="blog-listing-inner">
+    <h1 class="blog-listing-title">Colossyan Blog</h1>
+    <p class="blog-listing-subtitle">Insights on AI video, workplace learning, and content creation.</p>
+
+    <div class="blog-cards">
+      {%- for post in collections.blog | reverse -%}
+      <a href="{{ post.url }}" class="blog-card">
+        {% if post.data.featuredImage %}
+        <div class="blog-card-image">
+          <img src="{{ post.data.featuredImage }}" alt="{{ post.data.title }}">
+        </div>
+        {% endif %}
+        <div class="blog-card-body">
+          <h2 class="blog-card-title">{{ post.data.title }}</h2>
+          <p class="blog-card-description">{{ post.data.description }}</p>
+          <div class="blog-card-meta">
+            <span class="blog-card-author">{{ post.data.author }}</span>
+            <span class="blog-card-date">{{ post.date | readableDate }}</span>
+          </div>
+        </div>
+      </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% endblock %}
