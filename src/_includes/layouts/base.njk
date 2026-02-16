@@ -91,6 +91,36 @@
         }
       });
     })();
+
+    // TOC scroll-spy: highlight the active heading link
+    (function () {
+      var tocLinks = document.querySelectorAll('.sidebar-links a');
+      if (!tocLinks.length) return;
+
+      var headings = [];
+      tocLinks.forEach(function (link) {
+        var id = link.getAttribute('href');
+        if (id && id.startsWith('#')) {
+          var el = document.querySelector(id);
+          if (el) headings.push({ el: el, link: link });
+        }
+      });
+
+      function updateActive() {
+        var scrollY = window.scrollY + 120;
+        var current = null;
+        for (var i = 0; i < headings.length; i++) {
+          if (headings[i].el.offsetTop <= scrollY) {
+            current = headings[i];
+          }
+        }
+        tocLinks.forEach(function (l) { l.classList.remove('active'); });
+        if (current) current.link.classList.add('active');
+      }
+
+      window.addEventListener('scroll', updateActive, { passive: true });
+      updateActive();
+    })();
   </script>
 </body>
 </html>

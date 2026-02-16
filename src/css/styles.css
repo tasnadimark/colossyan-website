@@ -332,12 +332,10 @@ img {
   transition: color 0.15s ease;
 }
 
-.sidebar-links li a.active {
-  color: #000;
-}
-
+.sidebar-links li a.active,
 .sidebar-links li a:hover {
   color: #000;
+  font-weight: 600;
 }
 
 .sidebar-cta {
