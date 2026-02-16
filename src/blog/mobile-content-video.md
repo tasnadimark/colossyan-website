@@ -10,6 +10,9 @@ ctaHeading: "Turn mobile clips into polished video"
 ctaSubtitle: "Bring raw footage into Colossyan and add narration, branding, and translations in minutes."
 ctaButtonText: "Try it free"
 ctaButtonUrl: "#"
+blogTags:
+  - Company
+  - Product
 ---
 
 Mobile video is no longer a shortcut. It's the starting point. Most business video today doesn't begin in a studio. It begins on a phone. A product update recorded between meetings. A process walkthrough filmed on site. A quick explanation captured while the context is still fresh.

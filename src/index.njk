@@ -3,29 +3,152 @@ layout: layouts/base.njk
 title: Blog
 ---
 
+{% set allTags = collections.posts | allBlogTags %}
+
 <section class="blog-listing">
   <div class="blog-listing-inner">
-    <h1 class="blog-listing-title">Colossyan Blog</h1>
-    <p class="blog-listing-subtitle">Insights on AI video, workplace learning, and content creation.</p>
 
-    <div class="blog-cards">
-      {%- for post in collections.posts | reverse -%}
-      <a href="{{ post.url }}" class="blog-card">
-        {% if post.data.featuredImage %}
-        <div class="blog-card-image">
-          <img src="{{ post.data.featuredImage }}" alt="{{ post.data.title }}">
+    {# ── Controls bar ── #}
+    <div class="blog-controls">
+      <div class="blog-controls-left">
+        <h1 class="blog-active-tag" id="activeTagTitle">All</h1>
+        <div class="blog-tag-bar">
+          {%- for tag in allTags -%}
+          <button class="blog-tag-pill" data-tag="{{ tag }}">{{ tag }}</button>
+          {%- endfor -%}
+          <button class="blog-tag-pill blog-tag-pill--active" data-tag="all">All</button>
         </div>
-        {% endif %}
-        <div class="blog-card-body">
-          <h2 class="blog-card-title">{{ post.data.title }}</h2>
-          <p class="blog-card-description">{{ post.data.description }}</p>
-          <div class="blog-card-meta">
-            <span class="blog-card-author">{{ post.data.author }}</span>
-            <span class="blog-card-date">{{ post.date | readableDate }}</span>
+      </div>
+
+      <div class="blog-controls-right">
+        <button class="blog-filter-btn" disabled title="Filters coming soon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Filter
+        </button>
+
+        <div class="blog-sort-wrapper">
+          <button class="blog-sort-btn" id="sortToggle">
+            Sort
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="blog-sort-dropdown" id="sortDropdown">
+            <label class="blog-sort-option">
+              <input type="radio" name="sortOrder" value="newest" checked>
+              <span class="blog-sort-radio"></span>
+              Newest &rarr; Oldest
+            </label>
+            <label class="blog-sort-option">
+              <input type="radio" name="sortOrder" value="oldest">
+              <span class="blog-sort-radio"></span>
+              Oldest &rarr; Newest
+            </label>
           </div>
+        </div>
+      </div>
+    </div>
+
+    {# ── Blog cards ── #}
+    <div class="blog-cards" id="blogCards">
+      {%- for post in collections.posts | reverse -%}
+      {%- set gradIndex = post.fileSlug | gradIndex(9) -%}
+      <a href="{{ post.url }}" class="blog-card"
+         data-date="{{ post.date | readableDate }}"
+         data-timestamp="{{ post.date.getTime() }}"
+         data-tags="{{ post.data.blogTags | join(',') | lower }}">
+        <div class="blog-card-image blog-grad-{{ gradIndex }}"></div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <div class="blog-card-author">
+              <img src="{{ post.data.authorAvatar | default('/assets/placeholder-author.png') }}" alt="" class="blog-card-avatar">
+              <span>{{ post.data.author }}</span>
+            </div>
+            <div class="blog-card-meta-right">
+              <div class="blog-card-date-group">
+                <svg class="blog-card-cal-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.667 1.167v1.166M9.333 1.167v1.166M1.75 5.542h10.5M2.333 2.333h9.334c.322 0 .583.261.583.584v9.333a.583.583 0 0 1-.583.583H2.333a.583.583 0 0 1-.583-.583V2.917c0-.323.261-.584.583-.584Z" stroke="#212121" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>{{ post.date | readableDate }}</span>
+              </div>
+              <span class="blog-card-reading-time">{{ post.templateContent | readingTime }}</span>
+            </div>
+          </div>
+          <h2 class="blog-card-title">{{ post.data.title }}</h2>
         </div>
       </a>
       {%- endfor -%}
     </div>
   </div>
 </section>
+
+<script>
+(function () {
+  // Tag filtering
+  var pills = document.querySelectorAll('.blog-tag-pill');
+  var cards = document.querySelectorAll('.blog-card');
+  var activeTitle = document.getElementById('activeTagTitle');
+
+  pills.forEach(function (pill) {
+    pill.addEventListener('click', function () {
+      pills.forEach(function (p) { p.classList.remove('blog-tag-pill--active'); });
+      pill.classList.add('blog-tag-pill--active');
+      var tag = pill.getAttribute('data-tag').toLowerCase();
+      activeTitle.textContent = pill.textContent;
+
+      cards.forEach(function (card) {
+        if (tag === 'all') {
+          card.style.display = '';
+        } else {
+          var cardTags = (card.getAttribute('data-tags') || '').split(',');
+          card.style.display = cardTags.indexOf(tag) !== -1 ? '' : 'none';
+        }
+      });
+    });
+  });
+
+  // Sort dropdown toggle
+  var sortBtn = document.getElementById('sortToggle');
+  var sortDropdown = document.getElementById('sortDropdown');
+  var sortOpen = false;
+
+  sortBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    sortOpen = !sortOpen;
+    if (sortOpen) {
+      sortDropdown.classList.add('blog-sort-dropdown--open');
+    } else {
+      sortDropdown.classList.remove('blog-sort-dropdown--open');
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (sortOpen && !sortDropdown.contains(e.target) && e.target !== sortBtn) {
+      sortOpen = false;
+      sortDropdown.classList.remove('blog-sort-dropdown--open');
+    }
+  });
+
+  // Sort by date
+  var radios = document.querySelectorAll('input[name="sortOrder"]');
+  var container = document.getElementById('blogCards');
+
+  radios.forEach(function (radio) {
+    radio.addEventListener('change', function () {
+      var order = this.value;
+      var arr = Array.from(cards);
+      arr.sort(function (a, b) {
+        var ta = parseInt(a.getAttribute('data-timestamp'), 10);
+        var tb = parseInt(b.getAttribute('data-timestamp'), 10);
+        return order === 'newest' ? tb - ta : ta - tb;
+      });
+      arr.forEach(function (card) {
+        container.appendChild(card);
+      });
+    });
+  });
+})();
+</script>

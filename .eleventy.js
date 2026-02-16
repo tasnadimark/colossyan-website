@@ -36,6 +36,21 @@ module.exports = function (eleventyConfig) {
     });
   });
 
+  // Random integer between 1 and max (inclusive) — non-deterministic, avoid for builds
+  eleventyConfig.addFilter("randomInt", (max) => {
+    return Math.floor(Math.random() * max) + 1;
+  });
+
+  // Deterministic gradient index from a string (1..max), stable across builds
+  eleventyConfig.addFilter("gradIndex", (str, max) => {
+    let hash = 0;
+    const s = String(str || "");
+    for (let i = 0; i < s.length; i++) {
+      hash = ((hash << 5) - hash + s.charCodeAt(i)) | 0;
+    }
+    return (Math.abs(hash) % max) + 1;
+  });
+
   // Estimate reading time from content (word count / ~200 wpm)
   eleventyConfig.addFilter("readingTime", (content) => {
     if (!content) return "0 min read";
@@ -44,6 +59,18 @@ module.exports = function (eleventyConfig) {
     const words = text.trim().split(/\s/).filter(Boolean).length;
     const mins = Math.max(1, Math.ceil(words / 200));
     return `${mins} min read`;
+  });
+
+  // Collect all unique blogTags from a collection
+  eleventyConfig.addFilter("allBlogTags", (collection) => {
+    const tagSet = new Set();
+    (collection || []).forEach((item) => {
+      const bt = item.data && item.data.blogTags;
+      if (Array.isArray(bt)) {
+        bt.forEach((t) => tagSet.add(t));
+      }
+    });
+    return [...tagSet].sort();
   });
 
   // CTA banner shortcode: reads from post front matter with defaults

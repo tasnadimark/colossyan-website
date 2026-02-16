@@ -5,6 +5,9 @@ authorAvatar: "/assets/placeholder-author.png"
 date: 2026-02-12
 description: "Manual audio sync is slow, fragile, and impossible to scale. Discover how AI-generated video keeps audio and visuals perfectly aligned by design, not by post-production fixes."
 featuredImage: "https://cdn.prod.website-files.com/6245dc1e30cd521a34cf7059/69843dbe57433b6e4fbbfc46_syncing-audio-to-video-audio-sync.jpeg"
+blogTags:
+  - Product
+  - Engineering
 ---
 
 Syncing audio to video is all about making sure what you see lines up perfectly with what you hear. When a sound plays at the exact same time as its on-screen action, everything feels right. But when it's off, even by a little, the whole experience can feel cheap and unprofessional.
