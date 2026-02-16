@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Colossyan{% endblock %} | Colossyan</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/blog.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+
+    <!-- Top Utility Bar -->
+    <div class="top-bar">
+      <div class="top-bar-inner">
+        <a href="#" class="top-bar-link">Support</a>
+        <a href="#" class="top-bar-link">Login</a>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="navbar">
+      <nav class="navbar-container">
+        <a href="#" class="logo">
+          <img src="/assets/logo.svg" alt="Colossyan" width="150" height="31">
+        </a>
+        <div class="nav-links">
+          <div class="nav-item nav-dropdown">
+            <span>Features</span>
+            <img src="/assets/icon-chevron-down.svg" alt="" class="dropdown-icon">
+          </div>
+          <div class="nav-item nav-dropdown">
+            <span>Solutions</span>
+            <img src="/assets/icon-chevron-down.svg" alt="" class="dropdown-icon">
+          </div>
+          <div class="nav-item nav-dropdown">
+            <span>Resources</span>
+            <img src="/assets/icon-chevron-down.svg" alt="" class="dropdown-icon">
+          </div>
+          <a href="#" class="nav-item">Pricing</a>
+          <a href="#" class="nav-item">Enterprise</a>
+        </div>
+        <div class="nav-buttons">
+          <a href="#" class="btn btn-dark">Book a demo</a>
+          <a href="#" class="btn btn-light">Sign up for free</a>
+        </div>
+      </nav>
+    </header>
+
+    {% block content %}{% endblock %}
+
+  </div>
+
+  <script>
+    // Hide navbar on scroll down, show on scroll up
+    // Expand info card after scrolling into the article
+    (function () {
+      var navbar = document.querySelector('.navbar');
+      var infoCard = document.querySelector('.info-card');
+      var lastScrollY = window.scrollY;
+      var ticking = false;
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            var currentScrollY = window.scrollY;
+
+            // Navbar hide/show
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+              navbar.classList.add('navbar--hidden');
+            } else {
+              navbar.classList.remove('navbar--hidden');
+            }
+
+            // Info card expand at 300px scroll
+            if (infoCard) {
+              if (currentScrollY > 1000) {
+                infoCard.classList.add('expanded');
+              } else {
+                infoCard.classList.remove('expanded');
+              }
+            }
+
+            lastScrollY = currentScrollY;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
