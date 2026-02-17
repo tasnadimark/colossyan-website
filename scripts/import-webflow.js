@@ -131,6 +131,32 @@ function htmlToMarkdown(html) {
     return "\n\n" + items + "\n";
   });
 
+  // Tables
+  md = md.replace(/<table[^>]*>([\s\S]*?)<\/table>/gi, (_, tableInner) => {
+    const rows = [];
+    const rowPattern = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
+    let rowMatch;
+    while ((rowMatch = rowPattern.exec(tableInner)) !== null) {
+      const cells = [];
+      const cellPattern = /<(?:td|th)[^>]*>([\s\S]*?)<\/(?:td|th)>/gi;
+      let cellMatch;
+      while ((cellMatch = cellPattern.exec(rowMatch[1])) !== null) {
+        cells.push(cellMatch[1].replace(/<[^>]*>/g, "").trim());
+      }
+      rows.push(cells);
+    }
+    if (rows.length === 0) return "";
+    const colCount = Math.max(...rows.map((r) => r.length));
+    const mdRows = rows.map((r) => {
+      while (r.length < colCount) r.push("");
+      return "| " + r.join(" | ") + " |";
+    });
+    // Insert separator after header row
+    const sep = "| " + Array(colCount).fill("---").join(" | ") + " |";
+    mdRows.splice(1, 0, sep);
+    return "\n\n" + mdRows.join("\n") + "\n\n";
+  });
+
   // Blockquotes
   md = md.replace(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/gi, (_, content) => {
     const lines = content.replace(/<[^>]*>/g, "").trim().split("\n");
@@ -216,21 +242,20 @@ function formatDate(dateStr) {
 }
 
 // ---------------------------------------------------------------------------
-// Insert {% cta %} shortcode before the last h2 in the markdown
+// Insert {% cta %} shortcode after the second h2 in the markdown
 // ---------------------------------------------------------------------------
-function insertCtaBeforeLastHeading(md) {
-  const h2Pattern = /^## /gm;
+function insertCtaAfterSecondHeading(md) {
+  const h2Pattern = /^## .+$/gm;
   const matches = [];
   let match;
   while ((match = h2Pattern.exec(md)) !== null) {
-    matches.push(match.index);
+    matches.push({ index: match.index, end: match.index + match[0].length });
   }
   if (matches.length >= 2) {
-    // Insert before the last h2
-    const insertAt = matches[matches.length - 1];
-    return md.slice(0, insertAt) + "{% cta %}\n\n" + md.slice(insertAt);
+    const insertAt = matches[1].end;
+    return md.slice(0, insertAt) + "\n\n{% cta %}" + md.slice(insertAt);
   }
-  // If only 0-1 headings, append at the end
+  // If fewer than 2 headings, append at the end
   return md + "\n\n{% cta %}\n";
 }
 
@@ -277,12 +302,18 @@ function main() {
     mainImage: colIndex("Main Image"),
     publishDate: colIndex("Publish date"),
     richText: colIndex("Rich text"),
-    thumbnail: colIndex("Thumbnail"),
     metaDescription: colIndex("Meta Description"),
-    ctaText: colIndex("CTA text"),
-    timeRead: colIndex("Time read"),
-    imageAlt: colIndex("image alt text"),
     category: colIndex("What is the Category?"),
+    faqQ1: colIndex("FAQ Question 1"),
+    faqA1: colIndex("FAQ Answer 1"),
+    faqQ2: colIndex("FAQ Question 2"),
+    faqA2: colIndex("FAQ Answer 2"),
+    faqQ3: colIndex("FAQ Question 3"),
+    faqA3: colIndex("FAQ Answer 3"),
+    faqQ4: colIndex("FAQ Question 4"),
+    faqA4: colIndex("FAQ Answer 4"),
+    faqQ5: colIndex("FAQ Question 5"),
+    faqA5: colIndex("FAQ Answer 5"),
   };
 
   let created = 0;
@@ -314,6 +345,14 @@ function main() {
     const richText = get(COL.richText);
     const category = get(COL.category);
 
+    // Collect FAQ pairs
+    const faqs = [];
+    for (let f = 1; f <= 5; f++) {
+      const q = get(COL[`faqQ${f}`]);
+      const a = get(COL[`faqA${f}`]);
+      if (q) faqs.push({ question: q, answer: a || "" });
+    }
+
     if (!name && !richText) {
       skipped++;
       continue;
@@ -321,14 +360,13 @@ function main() {
 
     // Convert HTML body to Markdown
     let body = htmlToMarkdown(richText);
-    body = insertCtaBeforeLastHeading(body);
+    body = insertCtaAfterSecondHeading(body);
 
     // Build front matter
     const lines = [
       "---",
       `title: ${yamlStr(title)}`,
       `author: ${yamlStr(author)}`,
-      `authorAvatar: "/assets/placeholder-author.png"`,
       `date: ${publishDate}`,
       `description: ${yamlStr(description)}`,
     ];
@@ -340,6 +378,14 @@ function main() {
     if (category) {
       lines.push(`blogTags:`);
       lines.push(`  - ${yamlStr(category)}`);
+    }
+
+    if (faqs.length > 0) {
+      lines.push(`faqs:`);
+      for (const faq of faqs) {
+        lines.push(`  - question: ${yamlStr(faq.question)}`);
+        lines.push(`    answer: ${yamlStr(faq.answer)}`);
+      }
     }
 
     lines.push("---");
