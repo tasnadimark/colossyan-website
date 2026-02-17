@@ -240,10 +240,11 @@ function insertCtaBeforeLastHeading(md) {
 function main() {
   const args = process.argv.slice(2);
   const includeDrafts = args.includes("--include-drafts");
+  const overwrite = args.includes("--overwrite");
   const csvPath = args.find((a) => !a.startsWith("--"));
 
-  if (!csvPath) {
-    console.error("Usage: node scripts/import-webflow.js <path-to-csv> [--include-drafts]");
+    if (!csvPath) {
+    console.error("Usage: node scripts/import-webflow.js <path-to-csv> [--include-drafts] [--overwrite]");
     process.exit(1);
   }
 
@@ -312,6 +313,7 @@ function main() {
     const publishDate = formatDate(get(COL.publishDate));
     const richText = get(COL.richText);
     const ctaText = get(COL.ctaText);
+    const category = get(COL.category);
 
     if (!name && !richText) {
       skipped++;
@@ -340,6 +342,11 @@ function main() {
       lines.push(`ctaHeading: ${yamlStr(ctaText)}`);
     }
 
+    if (category) {
+      lines.push(`blogTags:`);
+      lines.push(`  - ${yamlStr(category)}`);
+    }
+
     lines.push("---");
 
     const content = lines.join("\n") + "\n\n" + body + "\n";
@@ -347,6 +354,12 @@ function main() {
     // Write file
     const filename = `${slug}.md`;
     const filepath = path.join(outputDir, filename);
+
+    if (!overwrite && fs.existsSync(filepath)) {
+      skipped++;
+      continue;
+    }
+
     fs.writeFileSync(filepath, content, "utf-8");
     created++;
 

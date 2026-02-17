@@ -11,8 +11,7 @@ ctaSubtitle: "Bring raw footage into Colossyan and add narration, branding, and 
 ctaButtonText: "Try it free"
 ctaButtonUrl: "#"
 blogTags:
-  - Company
-  - Product
+  - "Video Production"
 ---
 
 Mobile video is no longer a shortcut. It's the starting point. Most business video today doesn't begin in a studio. It begins on a phone. A product update recorded between meetings. A process walkthrough filmed on site. A quick explanation captured while the context is still fresh.
