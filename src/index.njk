@@ -3,7 +3,7 @@ layout: layouts/base.njk
 title: Blog
 ---
 
-{% set allTags = collections.posts | allBlogTags %}
+{% set categoryList = ["AI", "Learning", "Video Production", "Guest posts", "News"] %}
 
 <section class="blog-listing">
   <div class="blog-listing-inner">
@@ -13,10 +13,10 @@ title: Blog
       <div class="blog-controls-left">
         <h1 class="blog-active-tag" id="activeTagTitle">All</h1>
         <div class="blog-tag-bar">
-          {%- for tag in allTags -%}
+          <button class="blog-tag-pill blog-tag-pill--active" data-tag="all">All</button>
+          {%- for tag in categoryList -%}
           <button class="blog-tag-pill" data-tag="{{ tag }}">{{ tag }}</button>
           {%- endfor -%}
-          <button class="blog-tag-pill blog-tag-pill--active" data-tag="all">All</button>
         </div>
       </div>
 

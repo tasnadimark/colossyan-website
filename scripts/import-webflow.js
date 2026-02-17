@@ -312,7 +312,6 @@ function main() {
     const mainImage = get(COL.mainImage);
     const publishDate = formatDate(get(COL.publishDate));
     const richText = get(COL.richText);
-    const ctaText = get(COL.ctaText);
     const category = get(COL.category);
 
     if (!name && !richText) {
@@ -336,10 +335,6 @@ function main() {
 
     if (mainImage) {
       lines.push(`featuredImage: ${yamlStr(mainImage)}`);
-    }
-
-    if (ctaText) {
-      lines.push(`ctaHeading: ${yamlStr(ctaText)}`);
     }
 
     if (category) {
